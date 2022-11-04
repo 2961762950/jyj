@@ -1,0 +1,45 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/jyjv?
+      username: root
+      password: x
+#      redis的基本配置
+  redis:
+    host: localhost
+    port: 6379
+    database: 0
+    jedis:
+      pool:
+        max-active: 8 #最大连接数
+        max-wait: 1ms #连接池最大阻塞时间
+        max-idle: 4 #连接池最大空闲连接
+        min-idle: 0 #连接池最小空闲连接
+
+mybatis-plus:
+  configuration:
+#    ?????????????????????????????????????
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    sql-parser-cache: true
+    db-config:
+      id-type: ASSIGN_ID
+
+#更新时间 [秒] [分] [小时] [日] [月] [周] [年]
+time:
+  cron: "56 15 1 * * ?" #自动更新时间为每天的晚上1点15分56秒
+
+#过滤器允许通过的请求url
+test:
+  filterURL:
+    - "/school/login"
+    - "/school/logout"
+    - "/school/revise"
+    - "/student"
+    - "/education/login"
+    - "/education/logout"
+
